@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnPoint : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
-
+    [SerializeField] private PlayerController _playerController;
     [SerializeField] private ParticleSystem _particleSystem;
 
     [SerializeField] private List<Transform> _targets;
@@ -13,16 +13,14 @@ public class EnemySpawnPoint : MonoBehaviour
     [SerializeField] private StateBehaviours _stateBehaviours;
     [SerializeField] private ReactionBehaviours _reactionBehaviours;
 
-    private Queue<Vector3> _targetPoints;
-
     private IStateBehaviour _stateBehaviour;
     private IReactionBehaviour _reactionBehaviour;
 
-    private PlayerController _playerController;
+    private Queue<Vector3> _targetPoints = new Queue<Vector3>();
 
-    public void Start()
+    private void Awake()
     {
-        Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        Instantiate(_enemyPrefab, transform.position, Quaternion.identity, transform);
 
         foreach (Transform target in _targets)
         {
@@ -40,29 +38,25 @@ public class EnemySpawnPoint : MonoBehaviour
             case StateBehaviours.Random:
                 _stateBehaviour = new RandomState(this);
                 break;
-                
         }
+
         switch (_reactionBehaviours)
         {
             case ReactionBehaviours.AvoidPlayer:
                 _reactionBehaviour = new AvoidReaction(this, _playerController);
                 break;
-            case ReactionBehaviours.Scared:
-                _reactionBehaviour = new ScaredReaction(this, _particleSystem);
-                break;
             case ReactionBehaviours.Agressive:
                 _reactionBehaviour = new AgressiveReaction(this, _playerController);
+                break;
+            case ReactionBehaviours.Scared:
+                _reactionBehaviour = new ScaredReaction(this, _particleSystem);
                 break;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (TryGetComponent<PlayerController>(out PlayerController playerController))
-        {
-            _playerController = playerController;
-            _reactionBehaviour.React();
-        }
+        _reactionBehaviour.React();
     }
 
     private void Update()

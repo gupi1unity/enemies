@@ -18,7 +18,7 @@ public class AvoidReaction : IReactionBehaviour
         Vector3 direction = _enemy.transform.position - _playerController.transform.position;
         Vector3 moveDirection = new Vector3(direction.x,0,direction.z).normalized;
 
-        _enemy.transform.Translate(moveDirection);
+        _enemy.transform.Translate(moveDirection * Time.deltaTime);
 
     }
 }

@@ -9,6 +9,8 @@ public class PatrolState : IStateBehaviour
 
     private EnemySpawnPoint _enemy;
 
+    private float _speed = 5f;
+
     public PatrolState(Queue<Vector3> targetPoints, EnemySpawnPoint enemy)
     {
         _enemy = enemy;
@@ -21,13 +23,14 @@ public class PatrolState : IStateBehaviour
     {
         Vector3 distance = _currentTarget - _enemy.transform.position;
         Vector3 moveDireciton = new Vector3(distance.x,0,distance.z);
+        Vector3 moveDirectionNormalized = moveDireciton.normalized;
 
-        if (distance.magnitude < 0.05f)
+        if (moveDireciton.magnitude < 0.1f)
         {
             SwitchTarget();
         }
 
-        _enemy.transform.Translate(moveDireciton);
+        _enemy.transform.Translate(moveDirectionNormalized * _speed * Time.deltaTime);
     }
 
     private void SwitchTarget()

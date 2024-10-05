@@ -18,6 +18,6 @@ public class AgressiveReaction : IReactionBehaviour
         Vector3 direction = _playerController.transform.position - _enemy.transform.position;
         Vector3 moveDirection = new Vector3(direction.x, 0, direction.z).normalized;
 
-        _enemy.transform.Translate(moveDirection);
+        _enemy.transform.Translate(moveDirection * Time.deltaTime);
     }
 }

@@ -8,8 +8,8 @@ public class RandomState : IStateBehaviour
 
     private Vector3 _moveDirection;
 
-    private float _minValue = 10;
-    private float _maxValue = 20;
+    private float _minValue = -10f;
+    private float _maxValue = 10f;
 
     public RandomState(EnemySpawnPoint enemy)
     {
@@ -23,6 +23,6 @@ public class RandomState : IStateBehaviour
 
         _moveDirection = new Vector3(randomX,0,randomZ).normalized;
 
-        _enemy.transform.Translate(_moveDirection);
+        _enemy.transform.Translate(_moveDirection * Time.deltaTime);
     }
 }
