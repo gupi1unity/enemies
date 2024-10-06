@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBehaviour 
 {
-    public void DoBehaviour();
+    public void Update();
 }

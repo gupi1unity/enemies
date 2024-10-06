@@ -7,11 +7,11 @@ public class PatrolState : IBehaviour
     private Queue<Vector3> _targetPoints;
     private Vector3 _currentTarget;
 
-    private EnemySpawnPoint _enemy;
+    private Enemy _enemy;
 
     private float _speed = 5f;
 
-    public PatrolState(Queue<Vector3> targetPoints, EnemySpawnPoint enemy)
+    public PatrolState(Queue<Vector3> targetPoints, Enemy enemy)
     {
         _enemy = enemy;
         _targetPoints = targetPoints;
@@ -19,7 +19,7 @@ public class PatrolState : IBehaviour
         _currentTarget = _targetPoints.Dequeue();
     }
 
-    public void DoBehaviour()
+    public void Update()
     {
         Vector3 distance = _currentTarget - _enemy.transform.position;
         Vector3 moveDireciton = new Vector3(distance.x,0,distance.z);

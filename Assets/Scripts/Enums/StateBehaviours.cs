@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum StateBehaviours
 {
-    Default,
+    Idle,
     Patrol,
     Random
 }

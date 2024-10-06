@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    [SerializeField] private StateBehaviours _stateBehaviours;
+    [SerializeField] private ReactionBehaviours _reactionBehaviours;
+
     [SerializeField] private GameObject _enemyPrefab;
+    private SwitchBehaviour _switchBehaviour;
 
-    private IBehaviour _currentBehaviour;
-
-    private void Awake()
+    public void InstantiateEnemy()
     {
         Instantiate(_enemyPrefab, transform.position, Quaternion.identity, transform);
-    }
 
-    private void Update()
-    {
-        _currentBehaviour.DoBehaviour();
-    }
+        _switchBehaviour = GetComponent<SwitchBehaviour>();
 
-    public void SetBehaviour(IBehaviour targetBehaviour)
-    {
-        _currentBehaviour = targetBehaviour;
+        _switchBehaviour.Initialize(_stateBehaviours, _reactionBehaviours);
     }
-
 }

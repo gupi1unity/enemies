@@ -5,19 +5,22 @@ using UnityEngine;
 public class SwitchBehaviour : MonoBehaviour
 {
     [SerializeField] private PlayerController _playerController;
-    private EnemySpawnPoint _enemy;
+    private Enemy _enemy;
 
     [SerializeField] private ParticleSystem _particleSystem;
 
-    [SerializeField] private StateBehaviours _stateBehaviours;
-    [SerializeField] private ReactionBehaviours _reactionBehaviours;
+    private StateBehaviours _stateBehaviours;
+    private ReactionBehaviours _reactionBehaviours;
 
     [SerializeField] private List<Transform> _targets;
     private Queue<Vector3> _targetPoints;
 
-    private void Awake()
+    public void Initialize(StateBehaviours stateBehaviours, ReactionBehaviours reactionBehaviours)
     {
-        _enemy = GetComponent<EnemySpawnPoint>();
+        _stateBehaviours = stateBehaviours;
+        _reactionBehaviours = reactionBehaviours;
+
+        _enemy = GetComponent<Enemy>();
 
         _targetPoints = new Queue<Vector3>();
 
@@ -43,8 +46,8 @@ public class SwitchBehaviour : MonoBehaviour
     {
         switch (_stateBehaviours)
         {
-            case StateBehaviours.Default:
-                _enemy.SetBehaviour(new DefaultState());
+            case StateBehaviours.Idle:
+                _enemy.SetBehaviour(new IdleState());
                 break;
             case StateBehaviours.Patrol:
                 _enemy.SetBehaviour(new PatrolState(_targetPoints, _enemy));

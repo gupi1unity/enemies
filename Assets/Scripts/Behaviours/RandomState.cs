@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomState : IBehaviour
 {
-    private EnemySpawnPoint _enemy;
+    private Enemy _enemy;
 
     private Vector3 _randomTarget;
 
@@ -13,13 +13,13 @@ public class RandomState : IBehaviour
 
     private float _speed = 5f;
 
-    public RandomState(EnemySpawnPoint enemy)
+    public RandomState(Enemy enemy)
     {
         _enemy = enemy;
         CreateRandomTarget();
     }
 
-    public void DoBehaviour()
+    public void Update()
     {
         Vector3 distance = _randomTarget - _enemy.transform.position;
         Vector3 moveDirection = new Vector3(distance.x,0,distance.z);

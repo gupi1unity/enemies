@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ScaredReaction : IBehaviour
 {
-    private EnemySpawnPoint _enemy;
+    private Enemy _enemy;
     private ParticleSystem _particleSystem;
 
-    public ScaredReaction(EnemySpawnPoint enemy, ParticleSystem particleSystem)
+    public ScaredReaction(Enemy enemy, ParticleSystem particleSystem)
     {
         _enemy = enemy;
         _particleSystem = particleSystem;
     }
 
-    public void DoBehaviour()
+    public void Update()
     {
         _particleSystem.transform.position = _enemy.transform.position;
 

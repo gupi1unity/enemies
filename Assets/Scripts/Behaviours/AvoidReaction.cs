@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class AvoidReaction : IBehaviour
 {
-    private EnemySpawnPoint _enemy;
+    private Enemy _enemy;
     private PlayerController _playerController;
 
-    public AvoidReaction(EnemySpawnPoint enemy, PlayerController playerController)
+    public AvoidReaction(Enemy enemy, PlayerController playerController)
     {
         _enemy = enemy;
         _playerController = playerController;
     }
 
-    public void DoBehaviour()
+    public void Update()
     {
         Vector3 direction = _enemy.transform.position - _playerController.transform.position;
         Vector3 moveDirection = new Vector3(direction.x,0,direction.z).normalized;
