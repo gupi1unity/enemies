@@ -15,6 +15,8 @@ public class ScaredReaction : IBehaviour
 
     public void DoBehaviour()
     {
+        _particleSystem.transform.position = _enemy.transform.position;
+
         _particleSystem.Play();
         _enemy.gameObject.SetActive(false);
     }
