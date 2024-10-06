@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultState : IStateBehaviour
+public class DefaultState : IBehaviour
 {
-    public void State()
+    public void DoBehaviour()
     {
         return;
     }

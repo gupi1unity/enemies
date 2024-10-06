@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomState : IStateBehaviour
+public class RandomState : IBehaviour
 {
     private EnemySpawnPoint _enemy;
 
@@ -16,7 +16,7 @@ public class RandomState : IStateBehaviour
         _enemy = enemy;
     }
 
-    public void State()
+    public void DoBehaviour()
     {
         float randomX = Random.Range(_minValue, _maxValue);
         float randomZ = Random.Range(_minValue, _maxValue);

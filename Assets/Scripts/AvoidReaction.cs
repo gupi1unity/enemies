@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvoidReaction : IReactionBehaviour
+public class AvoidReaction : IBehaviour
 {
     private EnemySpawnPoint _enemy;
     private PlayerController _playerController;
@@ -13,7 +13,7 @@ public class AvoidReaction : IReactionBehaviour
         _playerController = playerController;
     }
 
-    public void React()
+    public void DoBehaviour()
     {
         Vector3 direction = _enemy.transform.position - _playerController.transform.position;
         Vector3 moveDirection = new Vector3(direction.x,0,direction.z).normalized;

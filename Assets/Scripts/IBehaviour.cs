@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IStateBehaviour
+public interface IBehaviour 
 {
-    public void State();
+    public void DoBehaviour();
 }

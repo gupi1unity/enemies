@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : IStateBehaviour
+public class PatrolState : IBehaviour
 {
     private Queue<Vector3> _targetPoints;
     private Vector3 _currentTarget;
@@ -19,7 +19,7 @@ public class PatrolState : IStateBehaviour
         _currentTarget = _targetPoints.Dequeue();
     }
 
-    public void State()
+    public void DoBehaviour()
     {
         Vector3 distance = _currentTarget - _enemy.transform.position;
         Vector3 moveDireciton = new Vector3(distance.x,0,distance.z);

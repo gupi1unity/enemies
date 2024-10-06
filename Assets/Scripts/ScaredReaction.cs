@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaredReaction : IReactionBehaviour
+public class ScaredReaction : IBehaviour
 {
     private EnemySpawnPoint _enemy;
     private ParticleSystem _particleSystem;
@@ -13,7 +13,7 @@ public class ScaredReaction : IReactionBehaviour
         _particleSystem = particleSystem;
     }
 
-    public void React()
+    public void DoBehaviour()
     {
         _particleSystem.Play();
         _enemy.gameObject.SetActive(false);
