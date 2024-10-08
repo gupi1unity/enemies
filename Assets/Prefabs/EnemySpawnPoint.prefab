@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2238970864242792978
+--- !u!1 &8536639725773508584
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3871941744006397652}
-  - component: {fileID: 9114995184396605060}
-  - component: {fileID: 5025570824178129716}
-  - component: {fileID: 3566256751028546563}
+  - component: {fileID: 2250170595212453609}
+  - component: {fileID: 3783462331808833286}
   m_Layer: 0
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
@@ -19,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3871941744006397652
+--- !u!4 &2250170595212453609
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238970864242792978}
+  m_GameObject: {fileID: 8536639725773508584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.63, y: 1, z: 11.03}
@@ -34,58 +32,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9114995184396605060
+--- !u!114 &3783462331808833286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238970864242792978}
+  m_GameObject: {fileID: 8536639725773508584}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ca8f30a7f2db04787ab63a8cf1157c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateBehaviours: 0
-  _reactionBehaviours: 0
-  _enemyPrefab: {fileID: 770220521665427131, guid: a875c938a70296447bf531a8f99c1c0b,
-    type: 3}
---- !u!135 &5025570824178129716
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238970864242792978}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 4.22
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3566256751028546563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238970864242792978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afdd013e8469ac64d9285ad1c365e6ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerController: {fileID: 0}
-  _particleSystem: {fileID: 0}
-  _targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  StateBehaviours: 2
+  ReactionBehaviours: 0

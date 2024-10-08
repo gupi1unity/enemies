@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class SwitchBehaviour : MonoBehaviour
 {
-    [SerializeField] private PlayerController _playerController;
+    private PlayerController _playerController;
     private Enemy _enemy;
 
-    [SerializeField] private ParticleSystem _particleSystem;
+    private ParticleSystem _particleSystem;
 
     private StateBehaviours _stateBehaviours;
     private ReactionBehaviours _reactionBehaviours;
 
-    [SerializeField] private List<Transform> _targets;
+    private List<Transform> _targets;
     private Queue<Vector3> _targetPoints;
 
-    public void Initialize(StateBehaviours stateBehaviours, ReactionBehaviours reactionBehaviours)
+    public void Initialize(StateBehaviours stateBehaviours, ReactionBehaviours reactionBehaviours, PlayerController playerController, ParticleSystem particleSystem, List<Transform> targets)
     {
         _stateBehaviours = stateBehaviours;
         _reactionBehaviours = reactionBehaviours;
 
-        _enemy = GetComponent<Enemy>();
+        _playerController = playerController;
+        _particleSystem = particleSystem;
+        _targets = targets;
 
         _targetPoints = new Queue<Vector3>();
 

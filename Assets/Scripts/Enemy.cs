@@ -13,6 +13,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        _currentBehaviour.Update();
+        //_currentBehaviour.Update();
     }
 }
