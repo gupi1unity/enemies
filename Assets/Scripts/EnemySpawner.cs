@@ -5,15 +5,21 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<EnemySpawnPoint> _spawnPoints;
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;
 
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private ParticleSystem _particleSystem;
 
     [SerializeField] private List<Transform> _targets;
+    private Queue<Vector3> _targetPoints = new Queue<Vector3>();
 
     private void Awake()
     {
+        foreach (Transform target in _targets)
+        {
+            _targetPoints.Enqueue(target.position);
+        }
+
         foreach (EnemySpawnPoint spawnPoint in _spawnPoints)
         {
             SpawnEnemy(spawnPoint);
@@ -22,10 +28,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(EnemySpawnPoint spawnPoint)
     {
-        GameObject enemy = Instantiate(_enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
+        Enemy enemy = Instantiate(_enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
 
-        SwitchBehaviour switchBehaviour = enemy.GetComponent<SwitchBehaviour>();
-
-        switchBehaviour.Initialize(spawnPoint.StateBehaviours, spawnPoint.ReactionBehaviours, _playerController, _particleSystem, _targets);
+        enemy.Initialize(spawnPoint.StateBehaviours, spawnPoint.ReactionBehaviours, _playerController, _particleSystem, new Queue<Vector3>(_targetPoints));
     }
 }
