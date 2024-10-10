@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Transform> _targets;
     private Queue<Vector3> _targetPoints = new Queue<Vector3>();
 
+    private IBehaviour _stateBehaviour;
+    private IBehaviour _reactionBehaviour;
+
     private void Awake()
     {
         foreach (Transform target in _targets)
@@ -30,6 +33,41 @@ public class EnemySpawner : MonoBehaviour
     {
         Enemy enemy = Instantiate(_enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
 
-        enemy.Initialize(spawnPoint.StateBehaviours, spawnPoint.ReactionBehaviours, _playerController, _particleSystem, new Queue<Vector3>(_targetPoints));
+        DetermineStateBehaviour(spawnPoint.StateBehaviours, enemy);
+        DetermineReactionBehaviour(spawnPoint.ReactionBehaviours, enemy);
+
+        enemy.Initialize(_stateBehaviour, _reactionBehaviour);
+    }
+
+    private void DetermineStateBehaviour(StateBehaviours stateBehaviours, Enemy enemy)
+    {
+        switch (stateBehaviours)
+        {
+            case StateBehaviours.Idle:
+                _stateBehaviour = new IdleState();
+                break;
+            case StateBehaviours.Patrol:
+                _stateBehaviour = new PatrolState(_targetPoints, enemy);
+                break;
+            case StateBehaviours.Random:
+                _stateBehaviour = new RandomState(enemy);
+                break;
+        }
+    }
+
+    private void DetermineReactionBehaviour(ReactionBehaviours reactionBehaviours, Enemy enemy)
+    {
+        switch (reactionBehaviours)
+        {
+            case ReactionBehaviours.AvoidPlayer:
+                _reactionBehaviour = new AvoidReaction(enemy, _playerController);
+                break;
+            case ReactionBehaviours.Agressive:
+                _reactionBehaviour = new AgressiveReaction(enemy, _playerController);
+                break;
+            case ReactionBehaviours.Scared:
+                _reactionBehaviour = new ScaredReaction(enemy, _particleSystem);
+                break;
+        }
     }
 }
